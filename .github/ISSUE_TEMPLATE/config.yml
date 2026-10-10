@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or general discussion
+    url: https://github.com/hugetim/openai_math/discussions
+    about: Questions about a result, requests for someone to check a paper, and broader discussion of the release go in Discussions.
+  - name: Official repository (openai/math)
+    url: https://github.com/openai/math
+    about: The upstream repository. It does not currently accept public issues; its history.md lists official corrections and withdrawals.
