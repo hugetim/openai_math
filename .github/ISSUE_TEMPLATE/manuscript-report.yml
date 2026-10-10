@@ -1,0 +1,141 @@
+name: Report on a manuscript
+description: Report an error, gap, missing citation, formalization mismatch, or independent check for a manuscript in this collection.
+title: "[Family NNN] Short description of the issue"
+labels: ["needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is an **unofficial, community-run tracker** on a fork of `openai/math`. It is not affiliated with OpenAI, and filing a report here does not automatically notify OpenAI.
+
+        Please file **one issue per problem**, and search existing issues first. General questions and broader discussion belong in Discussions.
+
+        Math renders in issues: use `$...$` inline and `$$...$$` for display.
+
+  - type: input
+    id: manuscript
+    attributes:
+      label: Manuscript
+      description: Title of the paper, or the name of its directory under `preprints/`.
+      placeholder: "e.g. Algebraicity of Weil classes on split abelian eightfolds"
+    validations:
+      required: true
+
+  - type: input
+    id: family
+    attributes:
+      label: Family number
+      description: The three-digit family number from `overview.pdf` or `CONTENTS.md`, if you know it.
+      placeholder: "e.g. 017"
+    validations:
+      required: false
+
+  - type: input
+    id: permalink
+    attributes:
+      label: Permalink to the version you examined
+      description: |
+        Manuscripts are revised in place, so a report needs to point at a fixed version. Open the file on GitHub, press `y` to turn the URL into a commit-pinned permalink, and paste it here. For a `.tex` file, select the relevant lines first so the link includes them.
+      placeholder: "https://github.com/openai/math/blob/<commit-sha>/preprints/.../main.tex#L210-L225"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of report
+      options:
+        - Error or gap in a proof
+        - Incorrect, ambiguous, or overstated theorem statement
+        - Missing or incorrect citation / prior work not credited
+        - Result already known or weaker than existing literature
+        - Lean formalization does not match the paper's statement
+        - Lean build or verification problem
+        - Exposition, notation, or typo
+        - Independent check (no problem found)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location in the manuscript
+      description: Theorem, lemma, or equation number, plus page or line numbers.
+      placeholder: "e.g. Lemma 4.3, eq. (4.7), p. 12"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        What does the manuscript claim at this point, and what is wrong (or what did you verify)? Please be specific enough that a specialist can check your report without redoing your work: quote the step, say why it fails, and give a counterexample or reference if you have one.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Effect on the main result
+      description: Your best assessment. "Unsure" is a fine answer.
+      options:
+        - Unsure
+        - Invalidates a main result as stated
+        - Leaves a gap, but it looks repairable
+        - Local only; main results are unaffected
+        - Not applicable (citation, exposition, or independent check)
+    validations:
+      required: true
+
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested repair
+      description: A fix, a weaker statement that does hold, or the citation that should be added.
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependents
+    attributes:
+      label: Other manuscripts affected
+      description: Papers in the collection that rely on this result, or companion papers in the same family, if you know of any.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: expertise
+    attributes:
+      label: Your familiarity with this area
+      description: Helps readers weigh the report. All levels are welcome.
+      options:
+        - I work in this research area
+        - I am a mathematician in a neighboring area
+        - Mathematical training, but not a specialist here
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai-use
+    attributes:
+      label: Use of AI tools in this report
+      options:
+        - No AI tools used
+        - AI helped me locate the issue; I checked it myself
+        - AI helped draft this text; the mathematical claims are my own
+        - Found and written largely by AI; not fully checked by me
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find this report.
+          required: true
+        - label: I checked `history.md` upstream and this has not already been corrected or withdrawn.
+          required: true
